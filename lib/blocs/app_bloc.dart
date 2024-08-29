@@ -12,6 +12,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       },
     );
 
+    // route to login view
+    on<AppEventGoToLoginView>(
+      (event, emit) {
+        emit(const AppStateIsInLoginView(
+            isLoading: false,));
+      },
+    );
+
     // route to email registeration view event handler
     on<AppEventGoToEmailRegistrationView>(
       (event, emit) {

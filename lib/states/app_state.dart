@@ -44,6 +44,16 @@ class AppStateIsInOnboardingView extends AppState {
 }
 
 @immutable
+class AppStateIsInLoginView extends AppState {
+  const AppStateIsInLoginView(
+      {required bool isLoading, AuthError? authError, int? currentStep = 0})
+      : super(
+            isLoading: isLoading,
+            authError: authError,
+            currentStep: currentStep);
+}
+
+@immutable
 class AppStateIsInRegisterationView extends AppState {
   const AppStateIsInRegisterationView(
       {required bool isLoading, AuthError? authError, int? currentStep = 1})

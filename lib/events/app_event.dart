@@ -11,6 +11,11 @@ class AppEventInitialise implements AppEvent {
 }
 
 @immutable
+class AppEventGoToLoginView implements AppEvent {
+  const AppEventGoToLoginView();
+}
+
+@immutable
 class AppEventGoToRegistrationView implements AppEvent {
   const AppEventGoToRegistrationView();
 }

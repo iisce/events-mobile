@@ -64,21 +64,26 @@ class OnboardingView extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              Container(
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 4, 36, 63),
-                    borderRadius: BorderRadius.circular(6)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Log in',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w800),
-                    ),
-                  ],
+              GestureDetector(
+                onTap: () {
+                  context.read<AppBloc>().add(AppEventGoToLoginView());
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 4, 36, 63),
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Log in',
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

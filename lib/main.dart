@@ -8,6 +8,7 @@ import 'package:isce_events/views/home_page_view/home_page_view.dart';
 import 'package:isce_events/views/onboarding_view.dart';
 import 'package:isce_events/views/registeration_views/choose_password_view.dart';
 import 'package:isce_events/views/registeration_views/email_registeration_view.dart';
+import 'package:isce_events/views/registeration_views/login_view.dart';
 import 'package:isce_events/views/registeration_views/personal_details_view.dart';
 import 'package:isce_events/views/registeration_views/registeration_view.dart';
 import 'package:isce_events/views/registeration_views/upload_profile_image.dart';
@@ -49,6 +50,8 @@ class MyApp extends StatelessWidget {
               return const OnboardingView();
             } else if (appState is AppStateIsInRegisterationView) {
               return const RegisterationView();
+            } else if (appState is AppStateIsInLoginView) {
+              return const LoginView();
             } else if (appState is AppStateIsInEmailRegisterationView) {
               return const EmailRegisterationView();
             } else if (appState is AppStateIsInChoosePasswordView) {
@@ -58,7 +61,7 @@ class MyApp extends StatelessWidget {
             } else if (appState is AppStateIsInUploadProfileImageView) {
               return const UploadProfileImageView();
             } else if (appState is AppStateLoggedIn) {
-              return const HomePageView();            
+              return const HomePageView();
             } else {
               // this should never happen
               return Container();
