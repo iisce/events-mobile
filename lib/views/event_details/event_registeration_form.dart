@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:isce_events/views/event_details/event_registeration_success.dart';
 import 'package:isce_events/views/event_details/event_registeration_text_field.dart';
+import 'package:isce_events/views/event_details/event_registration_ticket_dropdown.dart';
 import 'package:isce_events/views/registeration_views/header_text/registration_subtext.dart';
 import 'package:isce_events/views/registeration_views/registeration_views_button.dart';
 
@@ -150,6 +151,8 @@ class EventRegisterationForm extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
+                      RegistrationSubtext(subText: 'Ticket'),
+                      EventRegistrationTicketDropdown(),
                     ],
                   ),
                 ),

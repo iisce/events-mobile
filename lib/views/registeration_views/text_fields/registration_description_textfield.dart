@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class RegistrationTextfield extends HookWidget {
+class RegistrationDescriptionTextfield extends HookWidget {
   final TextEditingController controller;
   final String validatorText;
   final String hintText;
-  const RegistrationTextfield(
+  final int? maxLines;
+  const RegistrationDescriptionTextfield(
       {super.key,
+      this.maxLines,
       required this.controller,
       required this.validatorText,
       required this.hintText});
@@ -21,6 +23,7 @@ class RegistrationTextfield extends HookWidget {
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controller,
+        maxLines: maxLines,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return validatorText;

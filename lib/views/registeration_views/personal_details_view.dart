@@ -7,6 +7,7 @@ import 'package:isce_events/views/registeration_views/header_text/registration_h
 import 'package:isce_events/views/registeration_views/header_text/registration_subtext.dart';
 import 'package:isce_events/views/registeration_views/header_text/skip_text_button.dart';
 import 'package:isce_events/views/registeration_views/registeration_views_button.dart';
+import 'package:isce_events/views/registeration_views/text_fields/registration_description_textfield.dart';
 import 'package:isce_events/views/registeration_views/text_fields/registration_textfield.dart';
 
 class PersonalDetailsView extends HookWidget {
@@ -61,7 +62,7 @@ class PersonalDetailsView extends HookWidget {
                   height: 10,
                 ),
                 RegistrationSubtext(subText: 'Occupation Description'),
-                RegistrationTextfield(
+                RegistrationDescriptionTextfield(
                   controller: occupationDescription,
                   validatorText: 'describe your occupation',
                   hintText: 'Your best and sure guide for travels and tourism',

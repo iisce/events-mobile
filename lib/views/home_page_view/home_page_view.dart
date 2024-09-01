@@ -24,103 +24,111 @@ class _HomePageViewState extends State<HomePageView> {
         title: HeaderText(hederText: 'Events'),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search_outlined,
-                color: Color.fromARGB(255, 4, 36, 63),
-              )),
+            onPressed: () {},
+            icon: Icon(
+              Icons.search_outlined,
+              color: Color.fromARGB(255, 4, 36, 63),
+            ),
+          ),
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          EventAccessForm(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        const begin = Offset(1.0, 0.0);
-                        const end = Offset.zero;
-                        const curve = Curves.easeInOut;
+            onPressed: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) =>
+                      EventAccessForm(),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(1.0, 0.0);
+                    const end = Offset.zero;
+                    const curve = Curves.easeInOut;
 
-                        var tween = Tween(begin: begin, end: end)
-                            .chain(CurveTween(curve: curve));
-                        var offsetAnimation = animation.drive(tween);
+                    var tween = Tween(begin: begin, end: end)
+                        .chain(CurveTween(curve: curve));
+                    var offsetAnimation = animation.drive(tween);
 
-                        return SlideTransition(
-                          position: offsetAnimation,
-                          child: child,
-                        );
-                      },
-                    ));
-              },
-              icon: Icon(BoxIcons.bxs_category))
+                    return SlideTransition(
+                      position: offsetAnimation,
+                      child: child,
+                    );
+                  },
+                ),
+              );
+            },
+            icon: Icon(BoxIcons.bxs_category),
+          ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: upcomingEvents.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Container(
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
                     height: 400,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(14),
-                            bottomRight: Radius.circular(14)),
-                        image: DecorationImage(
-                            image:
-                                AssetImage(upcomingEvents.first['eventImage']),
-                            fit: BoxFit.cover)),
-                    child: Stack(children: [
-                      Positioned(
-                        bottom: 0,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(14),
+                        bottomRight: Radius.circular(14),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(upcomingEvents.first['eventImage']),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
                               color: Colors.black,
-                              borderRadius: BorderRadius.circular(14)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            //mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 45,
-                                    child: Text(
-                                      upcomingEvents.first['eventTitle'],
-                                      style: GoogleFonts.poppins(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 45,
+                                      child: Text(
+                                        upcomingEvents.first['eventTitle'],
+                                        style: GoogleFonts.poppins(
                                           fontSize: 28,
                                           fontWeight: FontWeight.w700,
-                                          color: Colors.white),
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    upcomingEvents.first['eventDescription'],
-                                    style: GoogleFonts.poppins(
+                                    Text(
+                                      upcomingEvents.first['eventDescription'],
+                                      style: GoogleFonts.poppins(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    upcomingEvents.first['eventDate'],
-                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      upcomingEvents.first['eventDate'],
+                                      style: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w700,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                              // BUTTON SECTION
-                              Column(
-                                children: [
-                                  RegisterEventButton(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    RegisterEventButton(
                                       eventTitle:
                                           upcomingEvents.first['eventTitle'],
                                       eventDate:
@@ -128,83 +136,88 @@ class _HomePageViewState extends State<HomePageView> {
                                       eventDescription: upcomingEvents
                                           .first['eventDescription'],
                                       eventImage:
-                                          upcomingEvents.first['eventImage']),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Free to attend',
-                                    style: GoogleFonts.poppins(
+                                          upcomingEvents.first['eventImage'],
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      'Free to attend',
+                                      style: GoogleFonts.poppins(
                                         fontSize: 9,
                                         fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              )
-                            ],
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ]),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    height: 15,
+                ),
+                SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CreateEventButton(),
+                ),
+                SizedBox(height: 25),
+              ],
+            ),
+          ),
+          SliverFillRemaining(
+            child: DefaultTabController(
+              length: 2,
+              child: Column(
+                children: [
+                  TabBar(
+                    tabs: [
+                      Tab(text: 'Upcoming'),
+                      Tab(text: 'Past'),
+                    ],
+                    labelColor: Color.fromARGB(255, 16, 139, 239),
+                    unselectedLabelColor: Color.fromARGB(255, 16, 139, 239),
+                    unselectedLabelStyle: GoogleFonts.poppins(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w300,
+                      color: Color.fromARGB(255, 16, 139, 239),
+                    ),
+                    labelStyle: GoogleFonts.poppins(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 16, 139, 239),
+                    ),
+                    indicatorColor: Color.fromARGB(255, 16, 139, 239),
+                    dividerColor: Colors.transparent,
                   ),
-                  CreateEventButton(),
-                  SizedBox(
-                    height: 25,
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        ListView.builder(
+                          itemCount: upcomingEvents.length,
+                          shrinkWrap: true,
+                          //physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            final event = upcomingEvents[index];
+                            return UpcomingEventsTab(
+                              eventTitle: event['eventTitle'],
+                              eventDescription: event['eventDescription'],
+                              eventImage: event['eventImage'],
+                              eventLocation: event['eventLocation'],
+                              eventDate: event['eventDate'],
+                            );
+                          },
+                        ),
+                        PassedEventsTab(),
+                      ],
+                    ),
                   ),
-                  DefaultTabController(
-                      length: 2,
-                      child: Column(
-                        children: [
-                          TabBar(
-                            tabs: [
-                              Tab(
-                                text: 'Upcoming',
-                              ),
-                              Tab(
-                                text: 'Past',
-                              )
-                            ],
-                            labelColor: Color.fromARGB(255, 16, 139, 239),
-                            unselectedLabelColor:
-                                Color.fromARGB(255, 16, 139, 239),
-                            unselectedLabelStyle: GoogleFonts.poppins(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w300,
-                                color: Color.fromARGB(255, 16, 139, 239)),
-                            labelStyle: GoogleFonts.poppins(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(255, 16, 139, 239)),
-                            indicatorColor: Color.fromARGB(255, 16, 139, 239),
-                            dividerColor: Colors.transparent,
-                          ),
-                          SizedBox(
-                            height: 700,
-                            child: TabBarView(children: [
-                              UpcomingEventsTab(
-                                  eventTitle: upcomingEvents[index]
-                                      ['eventTitle'],
-                                  eventDescription: upcomingEvents[index]
-                                      ['eventDescription'],
-                                  eventImage: upcomingEvents[index]
-                                      ['eventImage'],
-                                  eventLocation: upcomingEvents[index]
-                                      ['eventLocation'],
-                                  eventDate: upcomingEvents[index]
-                                      ['eventDate']),
-                              PassedEventsTab(),
-                            ]),
-                          )
-                        ],
-                      ))
                 ],
               ),
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

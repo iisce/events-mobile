@@ -13,7 +13,11 @@ class EventAcessPassView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('images/Logo_small.png'),
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Image.asset('images/Logo_small.png')),
         title: Text(
           'Events',
           style: GoogleFonts.poppins(
